@@ -1,0 +1,134 @@
+h2
+java -classpath h2-1.4.196.jar org.h2.tools.Server -tcp -tcpPort 9092 
+
+查看分支：git branch
+命令可以查看所有本地分支和远程分支 git branch -a 
+（git branch -r 可以只查看远程分支）
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>
+
+创建+切换分支：git checkout -b <name>
+
+合并某分支到当前分支：git merge <name>
+
+删除分支：git branch -d <name>
+
+与远程分支建立关联并推送  git push --set-upstream origin 'feature'
+(https://blog.csdn.net/boysky0015/article/details/81007897)
+
+与远程分支建立关联
+git branch --set-upstream-to=origin/<branch> <local_branch>
+
+当我想从远程仓库里拉取一条本地不存在的分支时：
+
+git checkout -b 本地分支名 origin/远程分支名
+
+
+
+
+clone 文件
+git clone gitadmin@192.168.31.71:yrs(项目名)
+
+git pull 命令
+
+作用：取回远程主机某个分支的更新，再与本地的指定分支合并
+
+格式：git pull  <远程主机名> <远程分支名>:<本地分支名>
+
+git pull gitadmin@192.168.31.71:yrs-api
+
+1. 如果与当前分支合并，则可省略本地分支名
+
+	git pull <远程主机名> <远程分支名> 
+
+	相当于：git fetch <远程主机名> <远程分支名>
+
+		git merge <远程主机名>/<远程分支名>
+
+2. 如果当前分支与远程分支存在追踪关系
+
+git pull <远程主机名>
+
+3. 如果当前分支只有一个追踪关系
+
+git pull
+
+4. 手动建立追踪关系
+
+git branch --set-upstream master origin/next
+
+5. 清理远程已删除本地还存在的分支
+
+git fetch --prune origin
+
+或者 git fetch -p
+
+或者 git pull -p
+
+
+
+分支
+
+想要新建一个分支并同时切换到那个分支上，
+$ git checkout -b iss53
+Switched to a new branch "iss53"
+1.创建本地分支
+
+
+git branch 分支名，例如：git branch 2.0.1.20120806
+注：2.0.1.20120806是分支名称，可以随便定义。
+
+2.切换本地分支
+git checkout 分支名，
+例如从master切换到分支：git checkout 2.0.1.20120806
+
+3.远程分支就是本地分支push到服务器上。比如master就是一个最典型的远程分支（默认）。
+git push origin 2.0.1.20120806
+
+4.远程分支和本地分支需要区分好，所以，在从服务器上拉取特定分支的时候，需要指定远程分支的名字。
+git checkout --track origin/2.0.1.20120806
+注意该命令由于带有--track参数，所以要求git1.6.4以上！这样git会自动切换到分支。
+
+5.提交分支数据到远程服务器
+git push origin <local_branch_name>:<remote_branch_name>
+例如：
+git push origin 2.0.1.20120806:2.0.1.20120806
+一般当前如果不在该分支时，使用这种方式提交。
+如果当前在 2.0.1.20120806 分支下，也可以直接提交
+git push
+
+提交该分支到远程仓库
+
+git push origin dev
+
+测试从远程获取dev
+
+git pull origin dev
+
+6.删除远程分支
+git push origin :develop
+
+7.查看所有分支
+git branch
+
+8.设置git push,pull默认的提交获取分支,(关联分支)
+
+git branch --set-upstream-to=origin/dev
+
+取消对master的跟踪
+
+git branch --unset-upstream master
+
+(git commit ,git push,之后就可以直接提交到远程的dev分支中,而不会是master)
+
+
+
+
+
+
+
+
+
+
